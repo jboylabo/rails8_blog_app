@@ -1,0 +1,19 @@
+<div class="card mb-3">
+  <div class="card-body">
+    <h1 class="card-title h3"><%= @blog.title %></h1>
+    <div class="card-text"><%= simple_format @blog.post %></div>
+    <p class="text-muted small mt-3 mb-0">
+      作成: <%= l @blog.created_at, format: :long %>
+      <% if @blog.updated_at != @blog.created_at %>
+        <br>
+        更新: <%= l @blog.updated_at, format: :long %>
+      <% end %>
+    </p>
+  </div>
+</div>
+
+<p class="d-flex flex-wrap gap-2">
+  <%= link_to "一覧へ", blogs_path, class: "btn btn-outline-secondary" %>
+  <%= link_to "編集", edit_blog_path(@blog), class: "btn btn-outline-primary" %>
+  <%= button_to "削除", blog_path(@blog), method: :delete, class: "btn btn-outline-danger", data: { turbo_confirm: "削除しますか？" } %>
+</p>

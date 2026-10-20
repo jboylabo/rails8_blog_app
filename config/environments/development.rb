@@ -45,7 +45,7 @@ Rails.application.configure do
 
   # Raise an error on page load if there are pending migrations.
   # このブランチでは PostgreSQL に接続しない。ページ表示のたびに DB へ繋ぐ確認を止める。
-  config.active_record.migration_error = false
+  config.active_record.migration_error = :page_load
 
   # Highlight code that triggered database queries in logs.
   config.active_record.verbose_query_logs = true

@@ -24,3 +24,7 @@ tech stack
 cp .env.example .env
 docker compose up -d --build
 ```
+
+## Blog チュートリアル（手作業・1 コミットずつ）
+
+[docs/blog_tutorial.md](docs/blog_tutorial.md)
