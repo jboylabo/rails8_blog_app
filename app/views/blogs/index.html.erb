@@ -1,12 +1,17 @@
 <h1 class="mb-3">Blog 一覧</h1>
 
-<%= link_to "新規作成", new_blog_path, class: "btn btn-primary mb-3" %>
+<% if user_signed_in? %>
+  <%= link_to "新規作成", new_blog_path, class: "btn btn-primary mb-3" %>
+<% else %>
+  <%= link_to "記事を書く（ログイン）", new_user_session_path, class: "btn btn-outline-primary mb-3" %>
+<% end %>
 
 <% if @blogs.any? %>
   <table class="table table-striped">
     <thead>
       <tr>
         <th>タイトル</th>
+        <th>投稿者</th>
         <th>作成日時</th>
       </tr>
     </thead>
@@ -14,6 +19,7 @@
       <% @blogs.each do |blog| %>
         <tr>
           <td><%= link_to blog.title, blog_path(blog) %></td>
+          <td><%= blog.user.email %></td>
           <td><%= l blog.created_at, format: :short %></td>
         </tr>
       <% end %>

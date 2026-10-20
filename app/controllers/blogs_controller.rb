@@ -1,5 +1,7 @@
 class BlogsController < ApplicationController
+  before_action :authenticate_user!, except: %i[index show]
   before_action :set_blog, only: %i[show edit update destroy]
+  before_action :set_owned_blog, only: %i[edit update destroy]
 
   def index
     @blogs = Blog.active.order(created_at: :desc)
@@ -13,7 +15,7 @@ class BlogsController < ApplicationController
   end
 
   def create
-    @blog = Blog.new(blog_params)
+    @blog = current_user.blogs.build(blog_params)
     if @blog.save
       redirect_to @blog, notice: "Blog を作成しました。"
     else
@@ -41,6 +43,10 @@ class BlogsController < ApplicationController
 
   def set_blog
     @blog = Blog.active.find(params[:id])
+  end
+
+  def set_owned_blog
+    @blog = current_user.blogs.active.find(params[:id])
   end
 
   def blog_params

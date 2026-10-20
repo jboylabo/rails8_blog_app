@@ -3,6 +3,7 @@
     <h1 class="card-title h3"><%= @blog.title %></h1>
     <div class="card-text"><%= simple_format @blog.post %></div>
     <p class="text-muted small mt-3 mb-0">
+      投稿者: <%= @blog.user.email %><br>
       作成: <%= l @blog.created_at, format: :long %>
       <% if @blog.updated_at != @blog.created_at %>
         <br>
@@ -14,6 +15,8 @@
 
 <p class="d-flex flex-wrap gap-2">
   <%= link_to "一覧へ", blogs_path, class: "btn btn-outline-secondary" %>
-  <%= link_to "編集", edit_blog_path(@blog), class: "btn btn-outline-primary" %>
-  <%= button_to "削除", blog_path(@blog), method: :delete, class: "btn btn-outline-danger", data: { turbo_confirm: "削除しますか？" } %>
+  <% if user_signed_in? && @blog.user == current_user %>
+    <%= link_to "編集", edit_blog_path(@blog), class: "btn btn-outline-primary" %>
+    <%= button_to "削除", blog_path(@blog), method: :delete, class: "btn btn-outline-danger", data: { turbo_confirm: "削除しますか？" } %>
+  <% end %>
 </p>
