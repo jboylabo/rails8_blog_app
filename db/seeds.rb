@@ -1,3 +1,12 @@
+demo_password = ENV.fetch("DEMO_USER_PASSWORD") do
+  abort "Set DEMO_USER_PASSWORD in .env (see .env.example)"
+end
+
+demo = User.find_or_create_by!(email: "demo@example.com") do |user|
+  user.password = demo_password
+  user.password_confirmation = demo_password
+end
+
 blogs = [
   {
     title: "Docker compose 学習メモ",
@@ -14,9 +23,9 @@ blogs = [
 ]
 
 blogs.each do |attrs|
-  Blog.active.find_or_create_by!(title: attrs[:title]) do |blog|
-    blog.post = attrs[:post]
-  end
+  blog = Blog.active.find_or_initialize_by(title: attrs[:title])
+  blog.assign_attributes(post: attrs[:post], user: demo)
+  blog.save!
 end
 
-puts "Seeded #{Blog.active.count} blogs"
+puts "Seeded demo user (#{demo.email}) and #{Blog.active.count} blogs"

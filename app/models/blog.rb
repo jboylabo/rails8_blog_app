@@ -1,4 +1,6 @@
 class Blog < ApplicationRecord
+  belongs_to :user
+
   validates :title, :post, presence: true
 
   scope :active, -> { where(deleted_at: nil) }

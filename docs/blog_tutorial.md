@@ -693,9 +693,12 @@ git commit -m "Remove Hello World controller after blogs root is in place"
 | 削除しても一覧に残る | 物理 `destroy` している | `soft_delete!` と `Blog.active` |
 | GitGuardian 失敗 | YAML にパスワード直書き | `.env` のみ、`.env.example` は `change_me` |
 
-## 次の章（スコープ外）
+## 次の章
+
+- [Devise チュートリアル（Blog 所有者）](devise_tutorial.md)
+
+## その他（スコープ外）
 
 - `config/database.yml` の本番向け調整
-- Devise 認証
 - paranoia gem
 - GitHub Actions CI
