@@ -13,6 +13,11 @@
           </div>
 
           <div class="mb-3">
+            <%= f.label :prefecture_id, "都道府県", class: "form-label" %>
+            <%= f.collection_select :prefecture_id, Prefecture.all, :id, :name, { include_blank: "選択してください" }, class: "form-select" %>
+          </div>
+
+          <div class="mb-3">
             <%= f.label :password, class: "form-label" %>
             <% if @minimum_password_length %>
               <div class="form-text"><%= @minimum_password_length %> 文字以上</div>

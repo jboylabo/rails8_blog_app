@@ -36,3 +36,7 @@ docker compose up -d --build
 ## テスト（RSpec）
 
 [docs/test_cases.md](docs/test_cases.md)
+
+## ActiveHash（固定マスタ）
+
+[docs/active_hash.md](docs/active_hash.md)

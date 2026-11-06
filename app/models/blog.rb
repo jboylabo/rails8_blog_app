@@ -1,5 +1,8 @@
 class Blog < ApplicationRecord
+  extend ActiveHash::Associations::ActiveRecordExtensions
+
   belongs_to :user
+  belongs_to :category, optional: true
 
   validates :title, :post, presence: true
 
