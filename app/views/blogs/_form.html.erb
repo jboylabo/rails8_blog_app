@@ -15,6 +15,11 @@
   </div>
 
   <div class="mb-3">
+    <%= f.label :category_id, "カテゴリ", class: "form-label" %>
+    <%= f.collection_select :category_id, Category.all, :id, :name, { include_blank: "選択してください" }, class: "form-select" %>
+  </div>
+
+  <div class="mb-3">
     <%= f.label :post, "本文", class: "form-label" %>
     <%= f.text_area :post, rows: 10, class: "form-control" %>
   </div>

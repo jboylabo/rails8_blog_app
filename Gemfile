@@ -21,6 +21,8 @@ gem "jbuilder"
 
 gem "devise"
 
+gem "active_hash"
+
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem "tzinfo-data", platforms: %i[ windows jruby ]
 
